@@ -13,4 +13,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, path: 'provision1.sh'
   config.vm.provision :shell, path: 'provision2.sh', privileged: false
+  config.vm.provision :shell, inline: 'install -d /home/vagrant/.byobu && install -m644 /vagrant/.byobu/keybindings.tmux /home/vagrant/.byobu/keybindings.tmux', privileged: false
 end
