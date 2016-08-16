@@ -3,6 +3,9 @@ set -euxo pipefail
 export PATH="$HOME/.anyenv/bin:$PATH"
 set +x
 eval "$(anyenv init - --no-rehash)"
+if [ ! -d "$(rbenv root)/plugins/rbenv-each" ]; then
+  git clone https://github.com/chriseppstein/rbenv-each.git "$(rbenv root)/plugins/rbenv-each"
+fi
 sed -i -e 's,^[^/].*BN_rand_range.*,/* \0 */,' \
        -e 's,^[^/].*BN_pseudo_rand_range.*,/* \0 */,' \
     "$HOME/opt/openssl-0.9.8zh/include/openssl/bn.h"
