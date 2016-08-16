@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: 'provision-dot-emacs.sh', privileged: false
   config.vm.provision :shell, inline: 'install -d /home/vagrant/.byobu && install -m644 /vagrant/.byobu/keybindings.tmux /home/vagrant/.byobu/keybindings.tmux', privileged: false
   config.vm.provision :shell, path: 'provision-libressl.sh', privileged: false
+  config.vm.provision :shell, path: 'provision-ruby-git.sh', privileged: false
 
   config.ssh.forward_agent = true
 end
