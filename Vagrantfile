@@ -17,10 +17,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: 'provision-packages-emacs.sh'
   config.vm.provision :shell, path: 'provision-packages-misc.sh'
   config.vm.provision :shell, path: 'provision-nadoka.sh'
+  config.vm.provision :shell, inline: 'install -d /home/vagrant/.byobu && install -m644 /vagrant/.byobu/keybindings.tmux /home/vagrant/.byobu/keybindings.tmux', privileged: false
   config.vm.provision :shell, path: 'provision-anyenv.sh', privileged: false
   config.vm.provision :shell, path: 'provision-dot-shell.sh', privileged: false
   config.vm.provision :shell, path: 'provision-dot-emacs.sh', privileged: false
-  config.vm.provision :shell, inline: 'install -d /home/vagrant/.byobu && install -m644 /vagrant/.byobu/keybindings.tmux /home/vagrant/.byobu/keybindings.tmux', privileged: false
+  config.vm.provision :shell, path: 'provision-go.sh', privileged: false
   config.vm.provision :shell, path: 'provision-libressl.sh', privileged: false
   config.vm.provision :shell, path: 'provision-ruby-git.sh', privileged: false
   config.vm.provision :shell, path: 'provision-old-openssl.sh', privileged: false

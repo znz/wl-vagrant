@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
+export GOPATH="$HOME/g"
 if [[ ! -x "$HOME/g/bin/ghq" ]]; then
   go get github.com/motemen/ghq
 fi
