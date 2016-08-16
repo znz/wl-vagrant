@@ -20,3 +20,6 @@ if [[ ! -e "$HOME/.gitconfig" ]]; then
   git config --global user.email "$LOCAL@$DOMAIN"
   "$HOME/s/github.com/znz/dot-shell/git-config.sh"
 fi
+if [[ ! -d "$HOME/.byobu" ]]; then
+  "$HOME/s/github.com/znz/dot-shell/init-byobu.sh"
+fi
