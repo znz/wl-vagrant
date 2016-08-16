@@ -24,6 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: 'provision-libressl.sh', privileged: false
   config.vm.provision :shell, path: 'provision-ruby-git.sh', privileged: false
   config.vm.provision :shell, path: 'provision-old-openssl.sh', privileged: false
+  config.vm.provision :shell, path: 'provision-ruby-released.sh', privileged: false
 
   config.ssh.forward_agent = true
 end
