@@ -23,3 +23,8 @@ if [[ -f /etc/systemd/timesyncd.conf ]]; then
   timedatectl set-ntp true
 fi
 etckeeper commit 'Setup NTP servers' || :
+if getent group systemd-journal; then
+  mkdir -p /var/log/journal
+  adduser vagrant systemd-journal
+  etckeeper commit 'adduser vagrant systemd-journal' || :
+fi
