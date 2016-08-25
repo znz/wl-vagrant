@@ -11,3 +11,5 @@ apt-get install -y ccache
 apt-get install -y curl
 apt-get install -y golang
 apt-get install -y subversion
+echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | debconf-set-selections
+apt-get install -y unattended-upgrades
