@@ -5,4 +5,6 @@
 /emacs-private/
 /gnupg/
 /hunspell_en_US
+/known_hosts
+/libressl/
 /tmp/
