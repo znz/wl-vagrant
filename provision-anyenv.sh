@@ -22,3 +22,11 @@ fi
 if [[ ! -d "$HOME/.anyenv/envs/rbenv" ]]; then
   anyenv install rbenv
 fi
+set +x
+eval "$(anyenv init - --no-rehash)"
+set -x
+if [[ ! -d "$(rbenv root)/plugins/rbenv-plug" ]]; then
+  git clone https://github.com/znz/rbenv-plug "$(rbenv root)/plugins/rbenv-plug"
+fi
+rbenv plug gem-src
+rbenv plug each
