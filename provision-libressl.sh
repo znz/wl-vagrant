@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
-VERSION=2.4.2
+VERSION=2.5.0
 CACHE_DIR="/vagrant/libressl"
-BUILD_DIR="$HOME/build"
+BUILD_DIR="/tmp/build"
 mkdir -p "$CACHE_DIR"
 cd "$CACHE_DIR"
 if ! gpg --list-keys | grep -q D5E4D8D5; then
@@ -20,8 +20,10 @@ cd "$BUILD_DIR"
 if [ ! -d "libressl-${VERSION}" ]; then
   tar zxf "$CACHE_DIR/libressl-${VERSION}.tar.gz"
 fi
-cd "libressl-${VERSION}"
-./configure --prefix="$HOME/opt/libressl-${VERSION}"
-make
-make check
-make install
+if [ ! -f "$HOME/opt/libressl-${VERSION}/bin/openssl" ]; then
+  cd "libressl-${VERSION}"
+  ./configure --prefix="$HOME/opt/libressl-${VERSION}"
+  make
+  make check
+  make install
+fi
