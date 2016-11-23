@@ -31,7 +31,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ]
   end
 
-  config.vm.provision :shell, path: 'provision.sh'
+  config.vm.provision :shell, path: 'provision-etckeeper.sh'
+  config.vm.provision :shell, path: 'provision-ja_JP.sh'
+  config.vm.provision :shell, path: 'provision-journald.sh'
+  config.vm.provision :shell, path: 'provision-timesyncd.sh'
   config.vm.provision :shell, path: 'provision-packages.sh'
   config.vm.provision :shell, path: 'provision-packages-emacs.sh'
   config.vm.provision :shell, path: 'provision-packages-misc.sh'
