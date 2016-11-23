@@ -14,6 +14,9 @@ fi
 if [[ ! -e "$HOME/.ssh/config" ]]; then
   echo "HashKnownHosts no" >"$HOME/.ssh/config"
 fi
+if [[ ! -e "$HOME/.ssh/known_hosts" ]]; then
+  ln -snf "/vagrant/known_hosts" "$HOME/.ssh/known_hosts"
+fi
 if [[ ! -e "$HOME/.gitconfig" ]]; then
   git config --global user.name "Kazuhiro NISHIYAMA"
   LOCAL="zn"; DOMAIN="mbf.nifty.com"
@@ -22,4 +25,7 @@ if [[ ! -e "$HOME/.gitconfig" ]]; then
 fi
 if [[ ! -d "$HOME/.byobu" ]]; then
   "$HOME/s/github.com/znz/dot-shell/init-byobu.sh"
+fi
+if [[ ! -e "$HOME/.config" ]]; then
+  ln -snf "/vagrant/.config" "$HOME/.config"
 fi
