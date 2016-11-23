@@ -7,6 +7,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'bento/ubuntu-16.04'
   config.vm.hostname = ENV["VM_HOSTNAME"] || "wl"
 
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+    config.cache.synced_folder_opts = {
+      owner: "_apt",
+      group: "_apt",
+      mount_options: ["dmode=777", "fmode=666"]
+    }
+  end
+
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 1024
     vb.cpus = 2
