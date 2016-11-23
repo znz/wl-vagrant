@@ -5,11 +5,21 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'bento/ubuntu-16.04'
-  config.vm.hostname = ENV["VM_HOSTNAME"] || "wl.127.0.0.1.xip.io"
+  config.vm.hostname = ENV["VM_HOSTNAME"] || "wl"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.memory = 1024
+    vb.cpus = 2
     vb.customize ['modifyvm', :id, '--nictype1', 'virtio']
+    vb.customize [
+      "modifyvm", :id,
+      "--hwvirtex", "on",
+      "--nestedpaging", "on",
+      "--largepages", "on",
+      "--ioapic", "on",
+      "--pae", "on",
+      "--paravirtprovider", "kvm",
+    ]
   end
 
   config.vm.provision :shell, path: 'provision.sh'
