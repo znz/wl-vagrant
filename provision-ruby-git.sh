@@ -9,7 +9,8 @@ if [ ! -d "$RUBY_SRCDIR" ]; then
   git clone https://github.com/ruby/ruby "$RUBY_SRCDIR"
 else
   pushd "$RUBY_SRCDIR"
-  git pull
+  git pull --prune --tags
+  git gc
   popd
 fi
 if [ ! -L "$HOME/ruby" ]; then
@@ -21,8 +22,9 @@ if [ ! -f "$RUBY_SRCDIR/configure" ]; then
   popd
 fi
 if [ ! -f "$(rbenv root)/versions/git/bin/ruby" ]; then
-  mkdir -p "$HOME/build/ruby-git"
-  cd "$HOME/build/ruby-git"
+  BUILD_DIR="$HOME/build/ruby-git"
+  mkdir -p "$BUILD_DIR"
+  cd "$BUILD_DIR"
   BASERUBY=--with-baseruby=/usr/bin/ruby
   CC="ccache gcc"
   LIBRESSL_DIR=$(ls -d ~/opt/libressl-* | tail -n1)
