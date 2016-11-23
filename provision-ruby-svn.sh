@@ -21,8 +21,9 @@ if [ ! -f "$RUBY_SRCDIR/configure" ]; then
   popd
 fi
 if [ ! -f "$(rbenv root)/versions/trunk/bin/ruby" ]; then
-  mkdir -p "$HOME/build/ruby-trunk"
-  cd "$HOME/build/ruby-trunk"
+  BUILD_DIR="$HOME/build/ruby-trunk"
+  mkdir -p "$BUILD_DIR"
+  cd "$BUILD_DIR"
   BASERUBY=--with-baseruby=/usr/bin/ruby
   CC="ccache gcc"
   CPPFLAGS="-DRUBY_DEBUG_ENV"
