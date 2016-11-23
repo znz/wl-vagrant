@@ -7,3 +7,6 @@ fi
 if [[ ! -x "$HOME/g/bin/peco" ]]; then
   go get -x -u github.com/peco/peco/cmd/peco
 fi
+if [[ ! -x "$HOME/g/bin/hub" ]]; then
+  go get -x -u github.com/github/hub
+fi
